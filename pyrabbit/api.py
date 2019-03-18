@@ -665,8 +665,12 @@ class Client(object):
 
         vhost = quote(vhost, '')
         base_body = {'count': count, 'requeue': requeue, 'encoding': encoding}
+        
+        base_body['ackmode'] = 'ack_requeue_true'
+
         if truncate:
             base_body['truncate'] = truncate
+        
         body = json.dumps(base_body)
 
         qname = quote(qname, '')
